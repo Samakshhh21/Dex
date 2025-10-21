@@ -15,9 +15,18 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         
-        let newPokemona = Pokemon(context: viewContext)
-        newPokemona.name = "Bulbasaur"
-            
+        let newPokemon = Pokemon(context: viewContext)
+        newPokemon.name = "Bulbasaur"
+        newPokemon.id = 1
+        newPokemon.types = ["Grass", "Poison"]
+        newPokemon.hp = 45
+        newPokemon.attack = 49
+        newPokemon.defence = 49
+        newPokemon.specialAttack = 65
+        newPokemon.specialDefence = 65
+        newPokemon.speed = 45
+        newPokemon.sprite = URL(string:  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png")
+        newPokemon.shiny = URL(string:  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png")
         
         do {
             try viewContext.save()
