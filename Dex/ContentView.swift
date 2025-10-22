@@ -24,11 +24,36 @@ struct ContentView: View {
                     NavigationLink {
                         Text(pokemon.name ?? "Unknown")
                     } label: {
-                        Text(pokemon.name ?? "Unknown")
+                        AsyncImage(url: pokemon.sprite){image in
+                            image
+                                .resizable()
+                                .scaledToFit()
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        .frame(width: 100, height: 100)
+                        VStack(alignment: .leading){
+                            Text(pokemon.name!.capitalized)
+                                .fontWeight(.bold)
+                            
+                            HStack{
+                                ForEach(pokemon.types!, id:\.self){type in
+                                    Text(type.capitalized)
+                                        .font(.subheadline)
+                                        .fontWeight(.semibold)
+                                        .foregroundStyle(.black)
+                                        .padding(.horizontal , 13)
+                                        .padding(.vertical , 5)
+                                        .background(Color(type.capitalized))
+                                        .clipShape(.capsule)
+                                }
+                            }
+                        }
                     }
                 }
                 
             }
+            .navigationTitle("Pokedex")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
@@ -59,6 +84,7 @@ struct ContentView: View {
                     pokemon.speed = fetchedPokemon.speed
                     pokemon.sprite = fetchedPokemon.sprite
                     pokemon.shiny = fetchedPokemon.shiny
+                    pokemon.types = fetchedPokemon.types
                     
                     try viewContext.save()
                 }catch {
