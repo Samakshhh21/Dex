@@ -43,6 +43,7 @@ struct FetchedPokemon : Decodable {
             case sprite = "frontDefault"
             case shiny = "frontShiny"
         }
+       
         
         
     }
