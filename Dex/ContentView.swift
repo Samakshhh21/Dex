@@ -55,7 +55,7 @@ struct ContentView: View {
                                         .padding(.vertical , 5)
                                         .background(Color(type.capitalized))
                                         .clipShape(.capsule)
-                                }
+                               }
                             }
                         }
                     }
