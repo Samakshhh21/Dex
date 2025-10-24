@@ -30,12 +30,7 @@ struct ContentView: View {
         }
         return NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
     }
-    
-    init(){
-        getPokemon()
-    }
 
-    
     var body: some View {
         NavigationView {
             List {
@@ -102,6 +97,9 @@ struct ContentView: View {
                 }
             }
             Text("Select an item")
+        }
+        .onAppear(){
+            getPokemon()
         }
     }
     
