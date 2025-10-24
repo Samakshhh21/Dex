@@ -90,11 +90,6 @@ struct ContentView: View {
                     }
                     .tint(.yellow)
                 }
-                ToolbarItem {
-                    Button("Add Item", systemImage: "plus") {
-                        getPokemon()
-                    }
-                }
             }
             Text("Select an item")
         }
@@ -120,11 +115,6 @@ struct ContentView: View {
                     pokemon.sprite = fetchedPokemon.sprite
                     pokemon.shiny = fetchedPokemon.shiny
                     pokemon.types = fetchedPokemon.types
-                    
-                    if(pokemon.id % 2 == 0){
-                        pokemon.favourite = true
-                    }
-                    
                     try viewContext.save()
                 }catch {
                     print(error)
