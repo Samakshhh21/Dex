@@ -93,9 +93,6 @@ struct ContentView: View {
             }
             Text("Select an item")
         }
-        .onAppear(){
-            getPokemon()
-        }
     }
     
     private func getPokemon(){
