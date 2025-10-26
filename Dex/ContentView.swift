@@ -81,8 +81,23 @@ struct ContentView: View {
                                         }
                                     }
                                 }
+                                .swipeActions(edge : .leading){
+                                    Button(pokemon.favourite ? "Remove from Favourites" : "Add to Favourites", systemImage: "star"){
+                                        pokemon.favourite.toggle()
+                                        
+                                        do{
+                                            try viewContext.save()
+                                        }catch{
+                                            print(error)
+                                        }
+                                        
+                                    }
+                                    .tint(pokemon.favourite ? .yellow : .gray)
+                                }
                             }
+                        
                         }
+                        
                     } footer : {
                         if(pokedex.count < 151){
                             ContentUnavailableView{
