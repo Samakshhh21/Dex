@@ -10,7 +10,7 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    
+    @FetchRequest<Pokemon>(sortDescriptors: []) private var allPokemons
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Pokemon.id, ascending: true)],
         animation: .default)
@@ -32,7 +32,7 @@ struct ContentView: View {
     }
 
     var body: some View {
-        if pokedex.isEmpty {
+        if allPokemons.isEmpty {
             ContentUnavailableView{
                 Label("No Pokemon" , image: .nopokemon)
             }description: {
@@ -99,7 +99,7 @@ struct ContentView: View {
                         }
                         
                     } footer : {
-                        if(pokedex.count < 151){
+                        if allPokemons.count < 151 {
                             ContentUnavailableView{
                                 Label("Missing Pokemon" , image: .nopokemon)
                             }description: {
